@@ -1,0 +1,48 @@
+<div  >
+<h1>Downloads</h1>
+
+<div>
+  <table class="table table-condensed">
+    <thead >
+    <tr>
+      <th></th>
+      <th>Seeds</th>
+      <th>Size</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat-start="download in downloads track by $index| orderBy:'title' ">
+        <td>
+          <button  ng-click="downloadMovieOrSerie( download , 'download/movie');download.downloadStarted ='Download Started'" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></button>
+          <button  ng-click=" SetUnique1(download.torrent_hash); MoviesInfo1(download.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
+          {{download.torrent_title}} <span ng-style={color:'blue'}>{{ download.downloadStarted  }}</span>
+        </td>
+        <td>
+          {{download.seeds}}
+        </td>
+        <td>
+          {{download.size /1048576 |  number:0}}GB
+        </td>
+
+      </tr>
+      <tr ng-if="ChoosenForInfo == download.torrent_hash" ng-repeat-end="">
+
+        <td colspan="3">
+            <div class="row">
+              <div class="col-sm-6">
+                  <h1>{{info.Title}}</h1>
+                  <p>{{info.Plot}}<br><br>imbd Rating = {{info.imdbRating}}</p>
+               </div>
+               <div class="col-sm-4">
+                  <img ng-src={{info.Poster}} >
+               </div>
+
+            </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>

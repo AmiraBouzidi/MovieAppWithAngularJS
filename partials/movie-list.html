@@ -1,0 +1,45 @@
+<div >
+<h1>Movies</h1>
+  <label>Search: <input ng-model="searchText"></label>
+<div>
+  <table>
+    <thead style="background-color: lightgray;">
+    </thead>
+    <tbody>
+      <tr ng-repeat-start="movie in movies | orderBy:'title' | filter:searchText">
+        <td>
+          <button  ng-click="PlayID(movie.id)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+        </td>
+        <td>
+          <button  ng-click="DeleteID(movie.id);movie.Deleted='Movie Deleted ' " type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+        </td>
+        <td>
+          <button ng-if="movie.expanded" ng-click="movie.expanded = false" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+          <button ng-if="!movie.expanded" ng-click="movie.expanded = true" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+        </td>
+        <td>
+          {{movie.title}} <span ng-style={color:'red'}>{{ movie.Deleted  }}</span>
+        </td>
+
+      </tr>
+      <tr ng-if="movie.expanded" ng-repeat-end="" ng-controller="MoviesInfo">
+
+        <td colspan="3">
+            <div class="row">
+              <div class="col-sm-6">
+                  <h1>{{info.Title}}</h1>
+                  <p>{{info.Plot}}<br><br>imbd Rating = {{info.imdbRating}}</p>
+               </div>
+               <div class="col-sm-4">
+                  <img ng-src={{info.Poster}} >
+               </div>
+
+            </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
