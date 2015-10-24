@@ -1,4 +1,4 @@
-var url=this.location.host;
+var url="http://"+this.location.host+"/";
 var moviecatControllers = angular.module('moviecatControllers', []);
 moviecatControllers.service('imdbService', function(){
     this.MoviesInfo= function(imbdID){

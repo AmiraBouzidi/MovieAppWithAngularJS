@@ -1,5 +1,5 @@
 
-var url=this.location.host;
+var url="http://"+this.location.host+"/";
 var moviecatApp = angular.module('moviecatApp', ['ngRoute', 'moviecatControllers']);
 
 moviecatApp.config(['$routeProvider',
