@@ -9,20 +9,13 @@
       <tr ng-repeat-start="movie in movies | orderBy:'title' | filter:searchText">
         <td>
           <button  ng-click="PlayID(movie.id)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
-        </td>
-        <td>
           <button  ng-click="DeleteID(movie.id);movie.Deleted='Movie Deleted ' " type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-        </td>
-        <td>
-          <button ng-if="movie.expanded" ng-click="movie.expanded = false" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-          <button ng-if="!movie.expanded" ng-click="movie.expanded = true" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-        </td>
-        <td>
+          <button  ng-click=" SetUnique1(movie.id) ;MoviesInfo1(movie.imdbid);SendPoster(info.Poster,movie.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
           {{movie.title}} <span ng-style={color:'red'}>{{ movie.Deleted  }}</span>
         </td>
 
       </tr>
-      <tr ng-if="movie.expanded" ng-repeat-end="" ng-controller="MoviesInfo">
+      <tr ng-if="ChoosenForInfo == movie.id" ng-repeat-end="">
 
         <td colspan="3">
             <div class="row">
@@ -31,7 +24,7 @@
                   <p>{{info.Plot}}<br><br>imbd Rating = {{info.imdbRating}}</p>
                </div>
                <div class="col-sm-4">
-                  <img ng-src={{info.Poster}} >
+                  <img ng-src={{urlPoster}}{{movie.imdbid}} >
                </div>
 
             </div>

@@ -10,20 +10,13 @@
       <tr ng-repeat-start="serie in series | orderBy:'title' | filter:searchText">
         <td>
           <button  ng-click="PlayID(serie.id) " type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" aria-hidden="true" ></span></button>
-        </td>
-        <td>
           <button  ng-click="DeleteID(serie.id);serie.Deleted='Serie Deleted '" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-        </td>
-        <td>
-          <button ng-if="serie.expanded" ng-click="serie.expanded = false" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-          <button ng-if="!serie.expanded" ng-click="serie.expanded = true" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-        </td>
-        <td>
-          {{serie.title}} <span ng-style={color:'red'}>{{ serie.Deleted  }}</span>
+          <button  ng-click="SetUnique1(serie.id);MoviesInfo1(serie.imdbid);SendPoster(info.Poster,serie.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
+          {{serie.title}} <span ng-style={color:'red'}>{{serie.Deleted}}</span>
         </td>
 
       </tr>
-      <tr ng-if="serie.expanded" ng-repeat-end="" ng-controller="seriesInfo">
+      <tr ng-if="ChoosenForInfo == serie.id" ng-repeat-end="" >
 
         <td colspan="3">
             <div class="row">
@@ -32,7 +25,7 @@
                   <p>{{info.Plot}}<br><br>imbd Rating = {{info.imdbRating}}</p>
                </div>
                <div class="col-sm-4">
-                  <img ng-src={{info.Poster}} >
+                  <img ng-src={{urlPoster}}{{movie.imdbid}} >
                </div>
 
             </div>

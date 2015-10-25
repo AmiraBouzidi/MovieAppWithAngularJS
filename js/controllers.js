@@ -1,5 +1,5 @@
 var url="http://"+this.location.host+"/";
-//var url="http://"+"192.168.31.108:5000"+"/";
+//var url="http://"+"192.168.31.108:5001"+"/";
 var moviecatControllers = angular.module('moviecatControllers', []);
 moviecatControllers.service('imdbService', function(){
     this.MoviesInfo= function(imbdID){
@@ -14,18 +14,83 @@ moviecatControllers.service('imdbService', function(){
 
 
 });
-moviecatControllers.controller('movieListCtrl', ['$scope', '$http',
-  function ($scope, $http) {
+moviecatControllers.controller('movieListCtrl', ['$scope', '$http','imdbService',
+  function ($scope, $http, imdbService) {
       $http.get(url+"movies").success(function(data) {
       $scope.movies = data;
+      $scope.MoviesInfo1= function(imbdID){
+        $scope.info= imdbService.MoviesInfo(imbdID);
+            console.log($scope.imbdID);
+      }
+      $scope.urlPoster=url+"img/";
+      $scope.SetUnique1= function(uniqueID){
+      if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
+        {$scope.ChoosenForInfo = '999'}
+      else
+        {$scope.ChoosenForInfo = imdbService.SetUniqueId(uniqueID)}
+          console.log($scope.ChoosenForInfo);
+        }
       });
   }]);
 
-moviecatControllers.controller('serieListCtrl', ['$scope', '$http',
-  function ($scope, $http) {
+moviecatControllers.controller('serieListCtrl', ['$scope', '$http','imdbService',
+  function ($scope, $http,imdbService) {
       $http.get(url+"series").success(function(data) {
       $scope.series = data;
+      $scope.MoviesInfo1= function(imbdID){
+        $scope.info= imdbService.MoviesInfo(imbdID);
+            console.log($scope.imbdID);
+      }
+      $scope.urlPoster=url+"img/";
+      $scope.SetUnique1= function(uniqueID){
+      if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
+        {$scope.ChoosenForInfo = '999'}
+      else
+        {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
+          console.log($scope.ChoosenForInfo);
+        }
       });
+  }]);
+  moviecatControllers.controller('newMovieListCtrl', ['$scope', '$http','imdbService',
+      function ($scope, $http,imdbService) {
+          $http.get(url+"new_movies").success(function(data) {
+          $scope.downloads =data;
+          $scope.MoviesInfo1= function(imbdID){
+            $scope.info= imdbService.MoviesInfo(imbdID);
+                console.log($scope.imbdID);
+          }
+          $scope.urlPoster=url+"img/";
+          $scope.SetUnique1= function(uniqueID){
+          if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
+            {$scope.ChoosenForInfo='3'}
+          else
+            {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
+            console.log($scope.ChoosenForInfo);
+            }
+
+        });
+
+  }]);
+
+  moviecatControllers.controller('newSerieListCtrl', ['$scope', '$http','imdbService',
+      function ($scope, $http,imdbService) {
+          $http.get(url+"new_series").success(function(data) {
+          $scope.downloads =data;
+          $scope.MoviesInfo1= function(imbdID){
+            $scope.info= imdbService.MoviesInfo(imbdID);
+                console.log($scope.imbdID);
+          }
+          $scope.urlPoster=url+"img/";
+          $scope.SetUnique1= function(uniqueID){
+          if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
+            {$scope.ChoosenForInfo='3'}
+          else
+            {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
+            console.log($scope.ChoosenForInfo);
+            }
+
+        });
+
   }]);
 
 moviecatControllers.controller('downloadMovieListCtrl', ['$scope', '$http','$routeParams','imdbService',
@@ -42,7 +107,7 @@ moviecatControllers.controller('downloadMovieListCtrl', ['$scope', '$http','$rou
           {$scope.ChoosenForInfo='3'}
         else
           {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
-            console.log($scope.ChoosenForInfo);
+          console.log($scope.ChoosenForInfo);
           }
 
       });

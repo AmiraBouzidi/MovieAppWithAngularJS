@@ -1,5 +1,5 @@
 <div  >
-<h1>Downloads</h1>
+<h1>New series to download!!</h1>
 
 <div>
   <table class="table table-condensed">
@@ -13,15 +13,15 @@
     <tbody>
       <tr ng-repeat-start="download in downloads track by $index| orderBy:'title' ">
         <td>
-          <button  ng-click="downloadMovieOrSerie( download , 'download/movie');download.downloadStarted ='Download Started'" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></button>
-          <button  ng-click=" SetUnique1(download.torrent_hash) ;MoviesInfo1(download.imdbid);SendPoster(info.Poster,download.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
+          <button  ng-click="downloadMovieOrSerie( download , 'download/serie');download.downloadStarted ='Download Started'" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></button>
+          <button  ng-click=" SetUnique1(download.torrent_hash); MoviesInfo1(download.imdbid);SendPoster(info.Poster,download.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
           {{download.torrent_title}} <span ng-style={color:'blue'}>{{ download.downloadStarted  }}</span>
         </td>
         <td>
           {{download.seeds}}
         </td>
         <td>
-          {{download.size  |  number:0}}GB
+          {{download.size /1048576 |  number:0}}GB
         </td>
 
       </tr>

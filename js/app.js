@@ -1,6 +1,6 @@
 
 var url="http://"+this.location.host+"/";
-//var url="http://"+"192.168.31.108:5000"+"/";
+//var url="http://"+"192.168.31.108:5001"+"/";
 var moviecatApp = angular.module('moviecatApp', ['ngRoute', 'moviecatControllers']);
 
 moviecatApp.config(['$routeProvider',
@@ -13,6 +13,14 @@ moviecatApp.config(['$routeProvider',
       when('/series', {
         templateUrl: 'partials/serie-list.html',
         controller: 'serieListCtrl'
+      }).
+      when('/newMovies', {
+        templateUrl: 'partials/new-movie-list.html',
+        controller: 'newMovieListCtrl'
+      }).
+      when('/newSeries', {
+        templateUrl: 'partials/new-serie-list.html',
+        controller: 'newSerieListCtrl'
       }).
       when('/downloadMovie/:id', {
         templateUrl: 'partials/download-movie-list.html',
@@ -67,7 +75,7 @@ moviecatApp.run( function($rootScope) {
           xmlhttp.onreadystatechange=function()
             {
               if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                    { console.log( JSON.parse(xmlhttp.responseText));}
+                    { }
             }
 
           xmlhttp.open("POST",playUrl,true);
