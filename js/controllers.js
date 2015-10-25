@@ -1,4 +1,5 @@
-var url="http://"+this.location.host+"/";
+//var url="http://"+this.location.host+"/";
+var url="http://"+"192.168.31.108:5000"+"/";
 var moviecatControllers = angular.module('moviecatControllers', []);
 moviecatControllers.service('imdbService', function(){
     this.MoviesInfo= function(imbdID){
@@ -35,13 +36,14 @@ moviecatControllers.controller('downloadMovieListCtrl', ['$scope', '$http','$rou
           $scope.info= imdbService.MoviesInfo(imbdID);
               console.log($scope.imbdID);
         }
+        $scope.urlPoster=url+"img/";
         $scope.SetUnique1= function(uniqueID){
         if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
-        {$scope.ChoosenForInfo='3'}
+          {$scope.ChoosenForInfo='3'}
         else
-        {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
-              console.log($scope.ChoosenForInfo);
-        }
+          {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
+            console.log($scope.ChoosenForInfo);
+          }
 
       });
 
@@ -56,14 +58,13 @@ moviecatControllers.controller('downloadSerieListCtrl', ['$scope', '$http','$rou
           $scope.info= imdbService.MoviesInfo(imbdID);
               console.log($scope.imbdID);
         }
+        $scope.urlPoster=url+"img/";
         $scope.SetUnique1= function(uniqueID){
-          if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
+        if(  $scope.ChoosenForInfo== imdbService.SetUniqueId(uniqueID))
           {$scope.ChoosenForInfo='3'}
-          else
+        else
           {$scope.ChoosenForInfo=imdbService.SetUniqueId(uniqueID)}
-              console.log($scope.ChoosenForInfo);
+            console.log($scope.ChoosenForInfo);
         }
-
       });
-
 }]);

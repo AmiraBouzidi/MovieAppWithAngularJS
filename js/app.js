@@ -1,5 +1,6 @@
 
-var url="http://"+this.location.host+"/";
+//var url="http://"+this.location.host+"/";
+var url="http://"+"192.168.31.108:5000"+"/";
 var moviecatApp = angular.module('moviecatApp', ['ngRoute', 'moviecatControllers']);
 
 moviecatApp.config(['$routeProvider',
@@ -51,14 +52,26 @@ moviecatApp.run( function($rootScope) {
 					var playUrl =url+type;
 					xmlhttp.onreadystatechange=function()
 					  {
-					  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-						{
-						console.log( JSON.parse(xmlhttp.responseText));
-
-						}
+  					  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+						      {		console.log( JSON.parse(xmlhttp.responseText));	}
 					  }
 					xmlhttp.open("POST",playUrl,true);
 					xmlhttp.send( JSON.stringify( torrentObjectId));
 
 	}
+  $rootScope.SendPoster = function ( posterUrl ,imbdID)
+  {
+          var xmlhttp;
+          xmlhttp=new XMLHttpRequest();
+          var playUrl =url+"imgp";
+          xmlhttp.onreadystatechange=function()
+            {
+              if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    { console.log( JSON.parse(xmlhttp.responseText));}
+            }
+
+          xmlhttp.open("POST",playUrl,true);
+          xmlhttp.send(JSON.stringify({"url":posterUrl, "id":imbdID}));
+
+  }
 });

@@ -14,7 +14,7 @@
       <tr ng-repeat-start="download in downloads track by $index| orderBy:'title' ">
         <td>
           <button  ng-click="downloadMovieOrSerie( download , 'download/serie');download.downloadStarted ='Download Started'" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></button>
-          <button  ng-click=" SetUnique1(download.torrent_hash); MoviesInfo1(download.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
+          <button  ng-click=" SetUnique1(download.torrent_hash); MoviesInfo1(download.imdbid);SendPoster(info.Poster,download.imdbid)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
           {{download.torrent_title}} <span ng-style={color:'blue'}>{{ download.downloadStarted  }}</span>
         </td>
         <td>
@@ -34,7 +34,7 @@
                   <p>{{info.Plot}}<br><br>imbd Rating = {{info.imdbRating}}</p>
                </div>
                <div class="col-sm-4">
-                  <img ng-src={{info.Poster}} >
+                  <img ng-src={{urlPoster}}{{download.imdbid}} >
                </div>
 
             </div>
