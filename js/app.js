@@ -1,6 +1,6 @@
 
-//var url="http://"+this.location.host+"/";
-var url="http://"+"192.168.31.108:5000"+"/";
+var url="http://"+this.location.host+"/";
+//var url="http://"+"192.168.31.108:5000"+"/";
 var moviecatApp = angular.module('moviecatApp', ['ngRoute', 'moviecatControllers']);
 
 moviecatApp.config(['$routeProvider',
